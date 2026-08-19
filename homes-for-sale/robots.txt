@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap for GitHub Pages site
+Sitemap: https://tvv1001.github.io/homes-for-sale/sitemap.xml
