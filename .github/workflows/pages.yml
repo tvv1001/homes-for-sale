@@ -11,7 +11,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
-      contents: read
+      contents: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -24,6 +24,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+
+      - name: Sync listing images
+        run: node tools/sync-images.js
+
+      - name: Commit updated listings.json (if changed)
+        run: |
+          if ! git diff --quiet -- assets/listings.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/listings.json
+            git commit -m "chore: sync listing images [skip ci]"
+            git push
+          else
+            echo "No image changes to commit"
+          fi
 
       - name: Generate sitemap
         run: node tools/generate-sitemap.js
