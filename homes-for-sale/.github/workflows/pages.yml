@@ -17,6 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Generate sitemap
+        run: node tools/generate-sitemap.js
+
+      - name: Write cache version file
+        run: echo "${GITHUB_SHA}" > cache-version.txt
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v1
         with:

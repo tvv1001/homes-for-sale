@@ -1,4 +1,6 @@
-const CACHE_NAME = 'gallery-cache-v25';
+// Cache name will be determined at install time by reading /cache-version.txt
+let CACHE_NAME = 'gallery-cache-default';
+const CACHE_PREFIX = 'gallery-cache-';
 const ASSETS = [
 	'./',
 	'./index.html',
@@ -11,9 +13,23 @@ const ASSETS = [
 
 // Install event: cache core assets and images discovered in listings.json
 self.addEventListener('install', (event) => {
+	// avoid clearing existing clients until activation
 	self.skipWaiting();
 	event.waitUntil(
-		caches.open(CACHE_NAME).then(async (cache) => {
+		(async () => {
+			// determine version from /cache-version.txt (written by deploy)
+			try {
+				const vres = await fetch('/cache-version.txt', { cache: 'no-store' });
+				if (vres && vres.ok) {
+					const ver = (await vres.text()).trim();
+					if (ver) CACHE_NAME = CACHE_PREFIX + ver;
+				}
+			} catch (e) {
+				// if version not available, keep default CACHE_NAME
+				console.warn('sw: could not read cache-version.txt', e);
+			}
+
+			const cache = await caches.open(CACHE_NAME);
 			// cache core assets first
 			await cache.addAll(ASSETS);
 			// try to fetch listings.json and cache listed images
@@ -27,7 +43,8 @@ self.addEventListener('install', (event) => {
 							if (Array.isArray(l.images)) images.push(...l.images.map((p) => (p.startsWith('./') ? p : `./${p}`)));
 						});
 					}
-					// dedupe
+
+					// dedupe and pre-cache images
 					const uniq = [...new Set(images)];
 					await Promise.all(uniq.map((url) => cache.add(url).catch(() => null)));
 				}
@@ -35,23 +52,26 @@ self.addEventListener('install', (event) => {
 				// ignore failures here; SW will cache dynamically on fetch
 				console.warn('sw: could not cache listing images at install', err);
 			}
-		}),
-	);
+					})();
+				);
 });
 
 // Activate: cleanup old caches and take control of open pages immediately
 self.addEventListener('activate', (event) => {
 	event.waitUntil(
-		caches
-			.keys()
-			.then((keys) =>
-				Promise.all(
-					keys.map((key) => {
-						if (key !== CACHE_NAME) return caches.delete(key);
-					}),
-				),
-			)
-			.then(() => self.clients.claim()),
+		(async () => {
+			// delete old caches whose keys don't match the current CACHE_NAME prefix+version
+			const keys = await caches.keys();
+			await Promise.all(
+				keys.map((key) => {
+					if (key === CACHE_NAME) return Promise.resolve();
+					// only delete caches that match our prefix (avoid touching unrelated caches)
+					if (key && key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME) return caches.delete(key);
+					return Promise.resolve();
+				}),
+			);
+			await self.clients.claim();
+		})(),
 	);
 });
 
@@ -83,24 +103,30 @@ self.addEventListener('fetch', (event) => {
 	}
 
 	event.respondWith(
-		caches.match(event.request).then((cachedResponse) => {
-			if (cachedResponse) return cachedResponse;
-			return fetch(event.request)
+		(async () => {
+			// Stale-while-revalidate: return cached response if available, and update cache in background.
+			const cache = await caches.open(CACHE_NAME);
+			const cachedResponse = await caches.match(event.request);
+			const networkFetch = fetch(event.request)
 				.then((networkResponse) => {
-					// Only cache valid responses
-					if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-						return networkResponse;
-					}
+					if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') return networkResponse;
 					const responseClone = networkResponse.clone();
-					caches.open(CACHE_NAME).then((cache) => {
-						cache.put(event.request, responseClone);
-					});
+					cache.put(event.request, responseClone).catch(() => null);
 					return networkResponse;
 				})
-				.catch(() => {
-					// Fallback to cached root page for navigation requests
-					if (event.request.mode === 'navigate') return caches.match('./index.html');
-				});
-		}),
+				.catch(() => null);
+
+			if (cachedResponse) {
+				// update cache in background, but serve cached immediately
+				networkFetch;
+				return cachedResponse;
+			}
+
+			// no cache: wait for network, otherwise fallback to navigation cached page
+			const net = await networkFetch;
+			if (net) return net;
+			if (event.request.mode === 'navigate') return caches.match('./index.html');
+			return null;
+		})(),
 	);
 });

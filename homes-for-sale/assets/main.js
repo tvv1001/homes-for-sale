@@ -1,38 +1,12 @@
-// Support ?clear-cache=1 to unregister the service worker and wipe all
-// caches on demand, e.g. http://localhost:8090/?clear-cache=1
-async function clearServiceWorkerCacheIfRequested() {
-	const params = new URLSearchParams(location.search);
-	if (!params.has('clear-cache')) return false;
-
-	console.log('clear-cache requested: unregistering service worker and clearing caches…');
-	if ('serviceWorker' in navigator) {
-		const registrations = await navigator.serviceWorker.getRegistrations();
-		await Promise.all(registrations.map((r) => r.unregister()));
-	}
-	if ('caches' in window) {
-		const keys = await caches.keys();
-		await Promise.all(keys.map((k) => caches.delete(k)));
-	}
-
-	// reload without the query param for a clean, cache-free load
-	const url = new URL(location.href);
-	url.searchParams.delete('clear-cache');
-	location.replace(url.toString());
-	return true;
+// Register the service worker and keep cache persistence until deploy updates the version.
+if ('serviceWorker' in navigator) {
+	window.addEventListener('load', () => {
+		navigator.serviceWorker
+			.register('./sw.js')
+			.then(() => console.log('Service Worker Registered Successfully!'))
+			.catch((err) => console.log('Service Worker Registration Failed:', err));
+	});
 }
-
-// Register the service worker and provide any client-side helpers
-clearServiceWorkerCacheIfRequested().then((cleared) => {
-	if (cleared) return; // page is reloading
-	if ('serviceWorker' in navigator) {
-		window.addEventListener('load', () => {
-			navigator.serviceWorker
-				.register('./sw.js')
-				.then(() => console.log('Service Worker Registered Successfully!'))
-				.catch((err) => console.log('Service Worker Registration Failed:', err));
-		});
-	}
-});
 
 // We'll load listing metadata from assets/listings.json so it's editable without changing JS
 let LISTINGS = [];
@@ -43,7 +17,7 @@ function loadListings() {
 		.then((data) => {
 			LISTINGS = data.listings.map((l) => ({
 				...l,
-				url: `listing-${l.id}.html`
+				url: `listing-${l.id}.html`,
 			}));
 			return LISTINGS;
 		})
@@ -248,6 +222,49 @@ function initDetailPage() {
 	const id = detailRoot.getAttribute('data-listing-id');
 	const listing = LISTINGS.find((l) => l.id === id);
 	if (!listing) return;
+
+	// Inject a concise meta description (keep it short to preserve keyword weight)
+	(function injectMeta() {
+		const head = document.head || document.getElementsByTagName('head')[0];
+		const existing = head.querySelector('meta[name="description"]');
+		const descParts = [];
+		if (listing.title) descParts.push(listing.title);
+		if (listing.sub) descParts.push(listing.sub);
+		const facts = [];
+		if (listing.beds) facts.push(`${listing.beds} bd`);
+		if (listing.baths) facts.push(`${listing.baths} ba`);
+		if (listing.sqft) facts.push(`${listing.sqft}${listing.areaUnit ? listing.areaUnit : ' sqft'}`);
+		if (facts.length) descParts.push(facts.join(' · '));
+		const desc = descParts.slice(0, 3).join(' — ').slice(0, 155);
+		if (existing) existing.setAttribute('content', desc);
+		else {
+			const m = document.createElement('meta');
+			m.name = 'description';
+			m.content = desc;
+			head.appendChild(m);
+		}
+
+		// Inject compact JSON-LD for the listing (helps search engines understand the content)
+		const ldId = 'ld-json-listing';
+		const oldLd = head.querySelector(`#${ldId}`);
+		if (oldLd) oldLd.remove();
+		const ld = {
+			'@context': 'https://schema.org',
+			'@type': 'SingleFamilyResidence',
+			'name': listing.title,
+			'description': desc,
+			'url': listing.url,
+			'image': listing.images && listing.images.length ? listing.images[0] : undefined,
+			'numberOfRooms': listing.beds || undefined,
+			'numberOfBathroomsTotal': listing.baths || undefined,
+			'floorSize': listing.sqft ? { '@type': 'QuantitativeValue', 'value': listing.sqft, 'unitText': listing.areaUnit || 'SQFT' } : undefined,
+		};
+		const s = document.createElement('script');
+		s.type = 'application/ld+json';
+		s.id = ldId;
+		s.text = JSON.stringify(ld);
+		head.appendChild(s);
+	})();
 	// fill header info
 	const h1 = detailRoot.querySelector('h1');
 	if (h1) h1.textContent = listing.title;
