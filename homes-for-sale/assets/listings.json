@@ -1,0 +1,181 @@
+{
+	"listings": [
+		{
+			"id": "dallas-texas",
+			"title": "3163 Whirlaway Rd Dallas, TX",
+			"sub": "Dallas, TX · $725,000 · 4 bd · 3 ba",
+			"address": "3163 Whirlaway Rd, Dallas, TX",
+			"price": "$725,000",
+			"parcelNumber": "00000588802000000",
+			"parcelUrl": "https://www.dallasact.com/act_webdev/dallas/showdetail2.jsp?can=00000588802000000&ownerno=0",
+			"beds": 4,
+			"baths": 3,
+			"sqft": 2361,
+			"year": 1962,
+			"contact": {
+				"label": "Message me on X: @tadams214",
+				"url": "https://x.com/tadams214"
+			},
+			"description": "<p><strong>Fantastic Location &amp; Smart Layout Near Northaven Trail!</strong></p><p><strong>Space &amp; Flexibility:</strong> Split layout ideal for roommates or families, featuring a bonus 5th room/study connected to a Jack-and-Jill bathroom.</p><p><strong>Flooring:</strong> Hardwood in main living spaces, tile in kitchen/laundry, and carpet in bedrooms.</p><p><strong>Comfort &amp; Conveniences:</strong> Cozy gas fireplace, brand-new washer &amp; dryer, and modern climate/security tech (Ring doorbell, rear floodlight, Nest thermostat).</p><p><strong>Outdoor Perk:</strong> Enjoy a short, easy walk to the nearby Northaven Trail!</p>",
+			"featuresGroups": [
+				{
+					"heading": "Interior",
+					"items": [
+						{
+							"label": "Bedrooms & bathrooms",
+							"subitems": [
+								{ "label": "Bedrooms", "value": "4" },
+								{ "label": "Office", "value": "1" },
+								{ "label": "Bathrooms", "value": "3" },
+								{ "label": "Full bathrooms", "value": "3" }
+							]
+						},
+						{ "label": "Heating", "value": "Central" },
+						{ "label": "Cooling", "value": "Air Conditioner, Central Air" },
+						{
+							"label": "Appliances",
+							"subitems": [
+								{ "label": "Included", "value": "Dishwasher, Freezer, Oven, Refrigerator, dryer, washer" },
+								{ "label": "Laundry", "value": "In Unit" }
+							]
+						},
+						{
+							"label": "Features",
+							"subitems": [{ "label": "Flooring", "value": "Carpet, Hardwood, Tile" }]
+						},
+						{
+							"label": "Interior area",
+							"subitems": [{ "label": "Total interior livable area", "value": "2,361 sqft" }]
+						}
+					]
+				},
+				{
+					"heading": "Property",
+					"items": [
+						{
+							"label": "Parking",
+							"subitems": [
+								{ "label": "Parking features", "value": "Attached, Garage" },
+								{ "label": "Has attached garage", "value": "Yes" },
+								{ "label": "Details", "value": "Contact manager" }
+							]
+						},
+						{
+							"label": "Details",
+							"subitems": [
+								{ "label": "Additional structures", "value": "Garage(s)" },
+								{ "label": "Parcel number", "value": "00000588802000000" }
+							]
+						}
+					]
+				},
+				{
+					"heading": "Construction",
+					"items": [
+						{
+							"label": "Type & style",
+							"subitems": [
+								{ "label": "Home type", "value": "SingleFamily" },
+								{ "label": "Property subtype", "value": "Single Family Residence" }
+							]
+						}
+					]
+				}
+			],
+			"priceHistory": [
+				{
+					"date": "2026-06-01",
+					"price": "$725,000",
+					"event": "Listed"
+				},
+				{
+					"date": "2026-07-15",
+					"price": "$435,000",
+					"event": "Price change"
+				},
+				{
+					"date": "2026-08-01",
+					"price": "$425,000",
+					"event": "Price change"
+				}
+			],
+			"images": [
+				"assets/images/dallas-texas/extra-06.jpg",
+				"assets/images/dallas-texas/extra-04.jpg",
+				"assets/images/dallas-texas/home-layout.jpg",
+				"assets/images/dallas-texas/br-sm-01.jpg",
+				"assets/images/dallas-texas/IMG_1449.JPG",
+				"assets/images/dallas-texas/IMG_1450.JPG",
+				"assets/images/dallas-texas/IMG_1451.JPG",
+				"assets/images/dallas-texas/IMG_1448.JPG",
+				"assets/images/dallas-texas/extra-01.jpg",
+				"assets/images/dallas-texas/extra-02.jpg",
+				"assets/images/dallas-texas/extra-03.jpg",
+				"assets/images/dallas-texas/extra-05.jpg",
+
+				"assets/images/dallas-texas/extra-07.jpg",
+				"assets/images/dallas-texas/extra-08.jpg",
+				"assets/images/dallas-texas/extra-09.jpg",
+				"assets/images/dallas-texas/extra-10.jpg",
+				"assets/images/dallas-texas/extra-11.jpg"
+			]
+		},
+		{
+			"id": "samutprakan-thailand",
+			"title": "2 Bedroom Condo for sale at Nue Noble Srinakarin - Lasalle",
+			"sub": "Samrong Nuea, Samut Prakan · \u0e3f3,000,000 · 2 bd · 1 ba",
+			"address": "Samrong Nuea, Mueang Samut Prakan, Samut Prakan 10270, Thailand",
+			"price": "\u0e3f3,000,000",
+			"beds": 2,
+			"baths": 1,
+			"sqft": 35,
+			"areaUnit": "SqM",
+			"year": 2022,
+			"mapUrl": "https://maps.app.goo.gl/8URX5q1ZBBGDCJQy6",
+			"mapLabel": "Nue Noble Srinakarin - Lasalle",
+			"contact": {
+				"label": "Contact / view listing on FazWaz",
+				"url": "https://www.fazwaz.com/property-sales/2-bedroom-condo-for-sale-at-nue-noble-srinakarin-lasalle-in-samrong-nuea-samut-prakan-u1428088"
+			},
+			"description": "<h3>About This Condo</h3><p>This property is a 35 SqM condo with 2 bedrooms and 1 bathroom that is available for sale. It is part of the Nue Noble Srinakarin - Lasalle project in Samrong Nuea, Samut Prakan and was completed in Dec 2022. You can buy this condo for a base price of \u0e3f3,000,000 (\u0e3f85,714/SqM).</p><p>2 bedroom corner room facing north, next to MRT Si La Salle. Building B14 &mdash; see the building floor plan for exact location. Fully furnished with extras.</p><ul><li><strong>Kitchen:</strong> Refrigerator, microwave, washer/dryer combo, electric stove top with air hood &amp; light, large stone custom tile backsplash.</li><li><strong>Bathroom:</strong> Glass shower, hot water, ample space for towels, personal items and storage.</li><li><strong>Master bedroom:</strong> Queen bedframe &amp; mattress, large closet &amp; storage space, vanity, TCL 55&quot; 4K TV, blackout curtains.</li><li><strong>2nd bedroom:</strong> Large single bedframe &amp; mattress, full closet &amp; storage space.</li><li><strong>Living room:</strong> Sofa, entertainment table, Sony Bravia 55&quot; OLED 4K TV, L-shaped desk from SB Design &amp; office chair, 27&quot; LG 4K HDR computer monitor.</li></ul><ul><li>Programmable keyless entry</li><li>3 air conditioning units &mdash; 1 in each bedroom and 1 for the main living area</li><li>Balcony with an amazing view</li><li>Fabric roll-down blinds in all rooms</li><li>North-facing unit / no direct sunlight = low electricity bill</li><li>Gigabit fiber internet available</li></ul><p>Ideal for a family, someone who needs dedicated office space, or investors &mdash; this area will continue to build and develop around the MRT Yellow Line, Bangna business district, and next to the top-ranked Sikarin Hospital. Next to MRT Si La Salle (YL18).</p><h3>Features</h3><ul><li>Covered Parking</li><li>Direct access to BTS/MRT</li></ul><h3>Basic Information</h3><table><tr><th>Date Listed</th><td>Jun 9, 2023</td></tr><tr><th>Property Type</th><td>Condo</td></tr><tr><th>Floor</th><td>26</td></tr><tr><th>Bedrooms</th><td>2</td></tr><tr><th>Size</th><td>35 SqM</td></tr><tr><th>Price per SqM</th><td>\u0e3f85,714</td></tr><tr><th>Pets</th><td>Not Allowed</td></tr><tr><th>Condo Ownership</th><td>Foreign Quota</td></tr><tr><th>Furniture</th><td>Fully Furnished</td></tr><tr><th>View(s)</th><td>City View</td></tr><tr><th>Building</th><td>Nue Noble Srinakarin - Lasalle</td></tr><tr><th>CAM Fee</th><td>\u0e3f1,575/mo</td></tr></table><h3>Investment Opportunity: Charges &amp; Yield</h3><table><tr><th>Sale Price</th><td>\u0e3f3,000,000</td></tr><tr><th>CAM Fee</th><td>\u0e3f1,575/mo</td></tr><tr><th>Price-to-Rent Ratio</th><td>17</td></tr><tr><th>Rental Yield</th><td>6%</td></tr></table><h3>Project Details</h3><table><tr><th>Project Name</th><td>Nue Noble Srinakarin - Lasalle</td></tr><tr><th>Developer</th><td>Noble Development</td></tr><tr><th>Construction</th><td>Completed (Dec 2022)</td></tr><tr><th>Floors</th><td>43</td></tr><tr><th>Buildings</th><td>1</td></tr><tr><th>Units</th><td>1,014</td></tr><tr><th>Project Area</th><td>5,511 SqM</td></tr><tr><th>Nearest Landmark</th><td>Bang Na BTS - 4.2 Km</td></tr><tr><th>Location</th><td>Samrong Nuea, Samut Prakan</td></tr></table><h3>Project Features</h3><ul><li>Communal Pool</li><li>Communal Gym</li><li>24H Security</li><li>CCTV (Video Surveillance)</li><li>Indoor Kids Zone</li><li>Car Parking</li><li>Reception / Lobby Area</li><li>Basketball Court</li><li>Co-Working Space / Meeting Room</li><li>Music Room</li><li>Indoor Games Room</li><li>Mini Theater</li><li>Outdoor Kids Zone</li><li>Library / Reading Room</li><li>Laundry Facilities / Dry Cleaning</li><li>Key Card Access</li><li>Kids Club</li></ul>",
+			"priceHistory": [
+				{
+					"date": "2025-12-01",
+					"price": "฿4,500,000",
+					"event": "Listed"
+				},
+				{
+					"date": "2026-03-12",
+					"price": "฿4,300,000",
+					"event": "Price change"
+				},
+				{
+					"date": "2026-07-01",
+					"price": "฿4,200,000",
+					"event": "Price change"
+				}
+			],
+			"images": [
+				"assets/images/samutprakan-thailand/roof01.jpg",
+				"assets/images/samutprakan-thailand/IMG_0545.JPG",
+				"assets/images/samutprakan-thailand/IMG_0583.JPG",
+				"assets/images/samutprakan-thailand/IMG_0584.JPG",
+				"assets/images/samutprakan-thailand/IMG_0585.JPG",
+				"assets/images/samutprakan-thailand/IMG_1825.JPG",
+				"assets/images/samutprakan-thailand/extra-01.jpg",
+				"assets/images/samutprakan-thailand/extra-02.jpg",
+				"assets/images/samutprakan-thailand/extra-03.jpg",
+				"assets/images/samutprakan-thailand/extra-04.jpg",
+				"assets/images/samutprakan-thailand/extra-05.jpg",
+				"assets/images/samutprakan-thailand/extra-06.jpg",
+				"assets/images/samutprakan-thailand/extra-07.jpg",
+				"assets/images/samutprakan-thailand/extra-08.jpg",
+				"assets/images/samutprakan-thailand/extra-09.jpg",
+				"assets/images/samutprakan-thailand/extra-10.jpg",
+				"assets/images/samutprakan-thailand/extra-11.jpg",
+				"assets/images/samutprakan-thailand/extra-12.jpg",
+				"assets/images/samutprakan-thailand/extra-13.jpg"
+			]
+		}
+	]
+}
