@@ -68,7 +68,7 @@ collections:
                 widget: "list"
                 required: false
                 fields:
-                  - {name: "date", label: "Date", widget: "date", format: "YYYY-MM-DD", required: false}
+                  - {name: "date", label: "Date", widget: "datetime", type: "date", format: "YYYY-MM-DD", required: false}
                   - {name: "price", label: "Price", widget: "string"}
                   - {name: "event", label: "Event", widget: "string"}
               - name: "images"
