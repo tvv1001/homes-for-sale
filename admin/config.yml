@@ -2,8 +2,6 @@ backend:
   name: github
   repo: tvv1001/homes-for-sale
   branch: main
-  use_pkce: true # Allows logging in without a backend server
-  app_id: YOUR_GITHUB_OAUTH_APP_CLIENT_ID # YOU MUST REPLACE THIS
 
 media_folder: "assets/images"
 public_folder: "assets/images"
